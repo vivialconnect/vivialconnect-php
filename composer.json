@@ -1,0 +1,32 @@
+{
+    "name": "vivialconnect/sdk",
+    "version": "0.1",
+    "description": "VivialConnect is a simple SMS/MSS API. It's designed specifically for developers seeking a simple, affordable and scalable messaging solution.",
+    "type": "library",
+    "homepage": "https://www.vivialconnect.net/",
+    "keywords": [
+        "api",
+        "php",
+        "sms",
+        "mms"
+    ],
+    "license": "MIT",
+    "authors": [{
+        "name": "Vivial Connect",
+        "email": "vivialconnect@vivial.net"
+    }],
+    "repositories": [{
+        "type": "vcs",
+        "url": "https:\/\/github.com\/vivialconnect\/vivialconnect-php"
+    }],
+    "autoload": {
+        "psr-0" : {
+            "VivialConnect\\" : "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "guzzlehttp/guzzle": "^6.2",
+        "optimus/onion": "^1.0"
+    }
+}
