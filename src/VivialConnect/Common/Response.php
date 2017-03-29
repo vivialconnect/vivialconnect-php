@@ -41,7 +41,6 @@ class Response
      */
     protected $payload;
 
-
     /**
      * @var array
      */

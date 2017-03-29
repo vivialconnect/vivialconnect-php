@@ -22,10 +22,10 @@ Resource::init($options);
 
 function getLoggingExample()
 {
-	$messages = Message::all(['page' => 1, 'limit' => 5]);
-	$connection = Resource::getConnectionByName('default');
-	$log = $connection->getLog();
-	print_r($log);
+    $messages = Message::all(['page' => 1, 'limit' => 5]);
+    $connection = Resource::getConnectionByName('default');
+    $log = $connection->getLog();
+    print_r($log);
 }
 
 getLoggingExample();
