@@ -5,7 +5,7 @@ namespace VivialConnect\Resources;
 
 class Log extends Resource
 {
-	/**
+    /**
      * List all log resources
      *
      * @return Collection|boolean
@@ -17,8 +17,8 @@ class Log extends Resource
         $instance = new $className;
         $response = $instance->getConnection()->get($instance->getResourceUri(), $queryParams, $headers);
         if ($response->isSuccessful()) {
-        	$data = $instance->parseAll($response->getPayload());
-         	return new Collection($className, $data->log_items, $response, $data->last_key);
+            $data = $instance->parseAll($response->getPayload());
+            return new Collection($className, $data->log_items, $response, $data->last_key);
         }
         if ($response->isThrowable()) {
             $errorClass = $instance->getConnection()->getErrorClass();
@@ -26,7 +26,6 @@ class Log extends Resource
         }
         return false;
     }
-
 
     /**
      * List aggregate log resources
@@ -42,8 +41,8 @@ class Log extends Resource
         $resourceUri = "accounts/{$accountId}/logs/aggregate.json";
         $response = $instance->getConnection()->get($resourceUri, $queryParams, $headers);
         if ($response->isSuccessful()) {
-        	$data = $instance->parseAll($response->getPayload());
-         	return new Collection($className, $data->log_items, $response, $data->last_key);
+            $data = $instance->parseAll($response->getPayload());
+            return new Collection($className, $data->log_items, $response, $data->last_key);
         }
         if ($response->isThrowable()) {
             $errorClass = $instance->getConnection()->getErrorClass();

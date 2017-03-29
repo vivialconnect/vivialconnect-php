@@ -99,7 +99,7 @@ abstract class Resource
         $this->_plural = Inflector::pluralize($name);
         $this->_singular = Inflector::singularize($name);
 
-        if(!empty($data)){
+        if (!empty($data)) {
             $this->hydrate($data);
         }
     }
