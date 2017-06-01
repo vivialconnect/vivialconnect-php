@@ -26,6 +26,7 @@
     "require": {
         "php": ">=5.3.3",
         "guzzlehttp/guzzle": "^6.2",
-        "optimus/onion": "^1.0"
+        "optimus/onion": "^1.0",
+        "phpunit/phpunit": "4.8.9"
     }
 }
