@@ -788,9 +788,14 @@ abstract class Resource
     /**
      * Initilize HTTP connection object.
      */
-    public static function init(array $options = [], $connectionName = 'default')
+    public static function init(array $options = [], $connectionName = 'default', $client = null)
     {
-        $connection = new Connection($options);
+        if ($client){
+            $connection = new Connection($options, $client);
+        }else{
+            $connection = new Connection($options);
+        }
+
         ConnectionManager::add($connectionName, $connection);
     }
 
