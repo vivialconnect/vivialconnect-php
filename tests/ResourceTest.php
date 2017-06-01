@@ -12,7 +12,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\RequestException;
-
 use PHPUnit\Framework\TestCase;
 
 require_once 'TestJson.php';
@@ -21,11 +20,8 @@ require_once 'TestJson.php';
  * @covers Message / Resource
  */
 
-
 final class ResourceTest extends PHPUnit_Framework_TestCase
 {
-
-
     public static function setUpBeforeClass()
     {
       global $find_json;
@@ -63,13 +59,10 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
       Resource::setCredentialToken(Resource::API_SECRET, "FAKEsEcRet");
       Resource::setCredentialToken(Resource::API_ACCOUNT_ID, "09827");
       Resource::init([], 'default', $mock_client);
-        
     }
-
 
     public function testMessageFind()
     {
-
         // happy path
         $message = Message::find(22075);
 
@@ -93,7 +86,6 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
           $message->num_media
         );
 
-
         // exception path 
         $message = Message::find(22075);
 
@@ -107,14 +99,10 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
           0,
           $message
         );
-
-  
-        
       }
 
     public function testMessageSend()
     {
-
       //happy path
       $message = new Message;
       $message->body = "test message";
@@ -122,12 +110,10 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
       $message->to_number = "16084218409";
       $message->send();
 
-
       $this->assertEquals(
         "2017-06-01T15:23:30+00:00",
         $message->date_created
       );
-
 
       $this->assertEquals(
         22123,
@@ -150,12 +136,10 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
         "2017-06-01T15:23:30+00:00",
         $message->date_created
       );
-
     }
 
     public function testMessageDestroy()
     {
-
       // This doesn't test anything now because the object is not affected by deletion
       // and our API only returns 200 and "{}" json on delete.
       // Leaving it as a stub in case that changes. Also, you can't delete messages.
@@ -166,7 +150,6 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
 
     public function testMessageAll()
     {
-
       // happy path
       $messages = Message::all();
 
@@ -180,7 +163,6 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
         get_class($messages)
       );
 
-
       // exception path
       $messages = Message::all();
 
@@ -189,7 +171,6 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
         0,
         $message
       );
-
     }
 
     public function testFindThrough()
@@ -224,7 +205,6 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
         0,
         $attachment
       );
-
     }
 
     public function testAllThrough()
@@ -253,6 +233,4 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
         $attachments
       );
     }
-
-    
 }
