@@ -12,17 +12,6 @@ function getAccount($accountId)
     printf("company_name = %s\n", $account->company_name);
 }
 
-function listSubaccounts($page = 1, $limit = 20)
-{
-    $accounts = Account::subAccounts(['page' => $page, 'limit' => $limit]);
-    foreach ($accounts as $key => $account)
-    {
-        printf("id = %s\n", $account->id);
-        printf("company_name = %s\n", $account->company_name);
-        print("\n");
-    }
-}
-
 function updateAccount($accountId, $companyName)
 {
     $account = Account::find($accountId);
@@ -39,18 +28,6 @@ function billingStatus($accountId)
     printf("free_trial_purchased_count = %s\n", $status->free_trial_purchased_count);
 }
 
-function createSubaccount($companyName)
-{
-    $account = new Account;
-    $account->company_name = $companyName;
-    $account->save();
-}
-
-function deleteSubaccount($accountId)
-{
-    $account = Account::find($accountId);
-    $account->destroy();
-}
 
 function main()
 {
@@ -67,19 +44,11 @@ function main()
     );
     $options = getopt($shortOpts, $longOpts);
     foreach (array_keys($options) as $option) switch ($option) {
-        case 'list':
-            listSubaccounts();
-            break;
 
         case 'update':
             $companyName = $options['name'];
             $accountId = (int)$options['id'];
             updateAccount($accountId, $companyName);
-            break;
-
-        case 'create':
-            $companyName = $options['name'];
-            createSubaccount($companyName);
             break;
 
         case 'get':
@@ -90,11 +59,6 @@ function main()
         case 'status':
             $accountId = $options['id'];
             billingStatus($accountId);
-            break;
-
-        case 'delete':
-            $accountId = (int)$options['id'];
-            deleteSubaccount($accountId);
             break;
     }
 }
