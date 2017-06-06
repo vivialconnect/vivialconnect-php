@@ -25,14 +25,6 @@ function listUsers($page = 1, $limit = 20)
     }
 }
 
-function updateUser($userId, $firstName = null, $lastName = null)
-{
-    $user = User::find($userId);
-    $user->first_name = $firstName;
-    $user->last_name = $lastName;
-    $user->save();
-}
-
 function main()
 {
     $shortOpts = "";
