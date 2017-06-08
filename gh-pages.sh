@@ -17,13 +17,13 @@ NC='\033[0m' # No Color
 
 
 
-html_docs=${SCRIPT_PATH}/docs
+html_docs=${SCRIPT_PATH}/docs/api
 remote_url=$(git config --get remote.origin.url)
 commit_message="Updating gh-pages docs to revision `git rev-parse --short HEAD`"
 
 
 # build documentation 
-php phpDocumentor.phar -d ./doc_source -t ./docs/api
+php phpDocumentor.phar -d ./src -t ./docs/api
 
 
 # Make sure gh-pages branch exists
@@ -43,7 +43,7 @@ fi
 # Make sure docs are built
 if [ ! -f "${html_docs}/index.html" ]; then
     printf "${RED}Unable to find html docs in the ${html_docs} directory${NC}\n"
-    printf "${RED}Make sure you run the rdoc lib command before \
+    printf "${RED}Make sure you run the php phpDocumentor.phar -d ./src -t ./docs/apicommand before \
 publishing documentation to the gh-pages branch${NC}\n"; echo
     exit 2
 fi
