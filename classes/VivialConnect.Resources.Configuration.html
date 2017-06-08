@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/VivialConnect.html">\VivialConnect</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">205</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1016818703"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1016818703" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1116681053"></a>
+                                <a href="../namespaces/VivialConnect.html" style="margin-left: 30px; padding-left: 0">VivialConnect</a>
+            </div>
+            <div id="namespace-1116681053" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-791059747"></a>
+                                <a href="../namespaces/VivialConnect.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
+            </div>
+            <div id="namespace-791059747" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/VivialConnect.Common.Error.html">Error</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Common.Inflector.html">Inflector</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Common.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Common.Response.html">Response</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Common.ResponseException.html">ResponseException</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Common.Utility.html">Utility</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1382374904"></a>
+                                <a href="../namespaces/VivialConnect.Filters.html" style="margin-left: 30px; padding-left: 0">Filters</a>
+            </div>
+            <div id="namespace-1382374904" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/VivialConnect.Filters.HmacAuth.html">HmacAuth</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1587212110"></a>
+                                <a href="../namespaces/VivialConnect.Resources.html" style="margin-left: 30px; padding-left: 0">Resources</a>
+            </div>
+            <div id="namespace-1587212110" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Account.html">Account</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Attachment.html">Attachment</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Log.html">Log</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Message.html">Message</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.Resource.html">Resource</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.ResourceException.html">ResourceException</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Resources.User.html">User</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1964520096"></a>
+                                <a href="../namespaces/VivialConnect.Transport.html" style="margin-left: 30px; padding-left: 0">Transport</a>
+            </div>
+            <div id="namespace-1964520096" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/VivialConnect.Transport.Connection.html">Connection</a></li>
+                                                    <li class="class"><a href="../classes/VivialConnect.Transport.ConnectionManager.html">ConnectionManager</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/VivialConnect.Resources.html">\VivialConnect\Resources</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\VivialConnect\Resources</small>Configuration</h1>
+                    <p><em></em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getId" class="">getId()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getIdentifierName" class="">getIdentifierName()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getResourceName" class="">getResourceName()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getResourceUri" class="">getResourceUri()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getResponse" class="">getResponse()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getError" class="">getError()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_save" class="">save()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_destroy" class="">destroy()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_fill" class="">fill()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_includesMany" class="">includesMany()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_includesOne" class="">includesOne()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_through" class="">through()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method___set" class="">__set()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_original" class="">original()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_reset" class="">reset()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_toArray" class="">toArray()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_toJson" class="">toJson()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getConnection" class="">getConnection()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_find" class="">find()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_all" class="">all()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_findThrough" class="">findThrough()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_allThrough" class="">allThrough()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_connection" class="">connection()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_setCredentialToken" class="">setCredentialToken()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getCredentialToken" class="">getCredentialToken()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_init" class="">init()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getConnectionByName" class="">getConnectionByName()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#constant_API_ACCOUNT_PREFIX" class="">API_ACCOUNT_PREFIX</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#constant_API_SECRET" class="">API_SECRET</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#constant_API_KEY" class="">API_KEY</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#constant_API_ACCOUNT_ID" class="">API_ACCOUNT_ID</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_isDirty" class="">isDirty()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_getDependencies" class="">getDependencies()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_parseFind" class="">parseFind()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_parseAll" class="">parseAll()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_wrapAttributes" class="">wrapAttributes()</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#method_hydrate" class="">hydrate()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_identifierName" class="">$identifierName</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_resourceName" class="">$resourceName</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_connectionName" class="">$connectionName</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_creds" class="">$creds</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_singularName" class="">$singularName</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_pluralName" class="">$pluralName</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property__plural" class="">$_plural</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property__singular" class="">$_singular</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_resourceIdentifier" class="">$resourceIdentifier</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_attributes" class="">$attributes</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_dirty" class="">$dirty</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_dependentResources" class="">$dependentResources</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_response" class="">$response</a><br />
+                                                                    <a href="../classes/VivialConnect.Resources.Resource.html#property_error" class="">$error</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Resources.Configuration.html"><div class="path-wrapper">Resources/Configuration.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/VivialConnect.Resources.Resource.html">\VivialConnect\Resources\Resource</a></div>
+                                                                                                    <div class="namespace-wrapper">\VivialConnect\Resources\Configuration</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API_ACCOUNT_PREFIX" name="constant_API_ACCOUNT_PREFIX" class="anchor"></a>
+            <article id="constant_API_ACCOUNT_PREFIX" class="constant">
+                <h3 class="">API_ACCOUNT_PREFIX</h3>
+                <pre class="signature">API_ACCOUNT_PREFIX</pre>
+                <p><em>Accounts prefix.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API_SECRET" name="constant_API_SECRET" class="anchor"></a>
+            <article id="constant_API_SECRET" class="constant">
+                <h3 class="">API_SECRET</h3>
+                <pre class="signature">API_SECRET</pre>
+                <p><em>API secret token.</em></p>
+                <p>Type: string
+Default: null</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API_KEY" name="constant_API_KEY" class="anchor"></a>
+            <article id="constant_API_KEY" class="constant">
+                <h3 class="">API_KEY</h3>
+                <pre class="signature">API_KEY</pre>
+                <p><em>API key token.</em></p>
+                <p>Type: string
+Default: null</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API_ACCOUNT_ID" name="constant_API_ACCOUNT_ID" class="anchor"></a>
+            <article id="constant_API_ACCOUNT_ID" class="constant">
+                <h3 class="">API_ACCOUNT_ID</h3>
+                <pre class="signature">API_ACCOUNT_ID</pre>
+                <p><em>API account ID.</em></p>
+                <p>Type: string
+Default: null</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_identifierName" name="property_identifierName" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$identifierName</h3>
+                <pre class="signature">$identifierName : string</pre>
+                <p><em>The unique key field for the resource</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_resourceName" name="property_resourceName" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$resourceName</h3>
+                <pre class="signature">$resourceName : string</pre>
+                <p><em>The name of the resource URI - defaults to the lowercase name of the Resource class</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_connectionName" name="property_connectionName" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$connectionName</h3>
+                <pre class="signature">$connectionName : string</pre>
+                <p><em>The connection name to use for this resource</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_creds" name="property_creds" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$creds</h3>
+                <pre class="signature">$creds : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_singularName" name="property_singularName" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$singularName</h3>
+                <pre class="signature">$singularName : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pluralName" name="property_pluralName" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$pluralName</h3>
+                <pre class="signature">$pluralName : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__plural" name="property__plural" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$_plural</h3>
+                <pre class="signature">$_plural : </pre>
+                <p><em>Plural form of the element name</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__singular" name="property__singular" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$_singular</h3>
+                <pre class="signature">$_singular : </pre>
+                <p><em>Singular form of the element name</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_resourceIdentifier" name="property_resourceIdentifier" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$resourceIdentifier</h3>
+                <pre class="signature">$resourceIdentifier : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_attributes" name="property_attributes" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$attributes</h3>
+                <pre class="signature">$attributes : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dirty" name="property_dirty" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$dirty</h3>
+                <pre class="signature">$dirty : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dependentResources" name="property_dependentResources" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$dependentResources</h3>
+                <pre class="signature">$dependentResources : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_response" name="property_response" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$response</h3>
+                <pre class="signature">$response : \VivialConnect\Resources\Response</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                \VivialConnect\Resources\Response
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_error" name="property_error" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$error</h3>
+                <pre class="signature">$error : \VivialConnect\Resources\Error</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                \VivialConnect\Resources\Error
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$data = null</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getId" name="method_getId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getId() : mixed|null</pre>
+                <p><em>Get the ID of the resource</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getIdentifierName" name="method_getIdentifierName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getIdentifierName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getIdentifierName() : string</pre>
+                <p><em>Get the identifier property name (defaults to &quot;id&quot;)</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getResourceName" name="method_getResourceName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getResourceName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getResourceName() : null|string</pre>
+                <p><em>Get VivialConnect resource name.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    null|string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getResourceUri" name="method_getResourceUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getResourceUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getResourceUri() : string</pre>
+                <p><em>Get the full resource URI</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getResponse" name="method_getResponse" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getResponse()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getResponse() : \VivialConnect\Resources\Response|null</pre>
+                <p><em>Get the Response object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \VivialConnect\Resources\Response|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getError" name="method_getError" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getError()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getError() : \VivialConnect\Resources\Error|null</pre>
+                <p><em>Get the error object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \VivialConnect\Resources\Error|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_save" name="method_save" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">save()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">save(array  <span class="argument">$queryParams = array()</span>, array  <span class="argument">$headers = array()</span>) : boolean</pre>
+                <p><em>Save the entity</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryParams </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_destroy" name="method_destroy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">destroy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">destroy(array  <span class="argument">$queryParams = array()</span>, array  <span class="argument">$headers = array()</span>) : boolean</pre>
+                <p><em>Destroy (delete) the resource</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryParams </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fill" name="method_fill" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fill()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fill(array  <span class="argument">$data</span>) </pre>
+                <p><em>Mass assign properties with an array of key/value pairs</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_includesMany" name="method_includesMany" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">includesMany()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">includesMany(string  <span class="argument">$model</span>, array  <span class="argument">$data</span>) : \VivialConnect\Resources\Collection</pre>
+                <p><em>Build a Collection of included resources in response payload.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/VivialConnect.Resources.Collection.html">\VivialConnect\Resources\Collection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_includesOne" name="method_includesOne" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">includesOne()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">includesOne(string  <span class="argument">$model</span>,   <span class="argument">$data</span>) : Resource</pre>
+                <p><em>Build a single instance of an included resource in response payload.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    Resource
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_through" name="method_through" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">through()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">through(Resource|string  <span class="argument">$resource</span>) </pre>
+                <p><em>Set dependent resources to prepend to URI. You can call this method multiple times to prepend additional dependent
+resources.</em></p>
+                <p>For example, if the API only allows you create a new comment on a post <em>through</em> the post's URI:
+POST /posts/1234/comment</p>
+<p>$comment = new Comment;
+$comment-&gt;through('posts/1234');
+$comment-&gt;body = &quot;This is a comment&quot;;
+$comment-&gt;save();</p>
+<p>OR</p>
+<p>$post = Post::find(1234);
+$comment = new Comment;
+$comment-&gt;through($post);
+$comment-&gt;body = &quot;This is a comment&quot;;
+$comment-&gt;save();</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>Resource|string</td>
+                                <td>$resource </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(  <span class="argument">$property</span>) : mixed|null</pre>
+                <p><em>Magic getter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$property </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___set" name="method___set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__set(  <span class="argument">$property</span>,   <span class="argument">$value</span>) </pre>
+                <p><em>Magic setter</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$property </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_original" name="method_original" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">original()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">original(  <span class="argument">$property</span>) : mixed|null</pre>
+                <p><em>Get the original value of a property (before it was modified).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$property </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_reset" name="method_reset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">reset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">reset() : void</pre>
+                <p><em>Reset all modified properties, reset response, reset error</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toArray" name="method_toArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toArray() : array</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toJson" name="method_toJson" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toJson()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toJson() : string</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConnection" name="method_getConnection" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConnection()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConnection() : \VivialConnect\Transport\Connection</pre>
+                <p><em>Get the connection for the model</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/VivialConnect.Transport.Connection.html">\VivialConnect\Transport\Connection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_find" name="method_find" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">find()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">find(integer|string|null  <span class="argument">$id = null</span>, array  <span class="argument">$queryParams = array()</span>, array  <span class="argument">$headers = array()</span>) : Resource|boolean</pre>
+                <p><em>Find (GET) a specific resource by its ID (optional)</em></p>
+                <p>This method assumes the payload contains a <em>SINGLE</em> resource instance. This method will call the
+parseFind method on the Resource instance to know where to look in the payload to get the resource data.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|string|null</td>
+                                <td>$id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryParams </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\VivialConnect\Common\ResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    Resource|boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_all" name="method_all" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">all()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">all(array  <span class="argument">$queryParams = array()</span>, array  <span class="argument">$headers = array()</span>) : \VivialConnect\Resources\Collection|boolean</pre>
+                <p><em>Get ALL resources</em></p>
+                <p>This method assumes the payload contains an ARRAY of resource instances. This method will call the
+parseAll method on the Resource instance to know where to look in the payload to get the array of resource data.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryParams </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\VivialConnect\Common\ResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/VivialConnect.Resources.Collection.html">\VivialConnect\Resources\Collection</a>|boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete(  <span class="argument">$id</span>, array  <span class="argument">$queryParams = array()</span>, array  <span class="argument">$headers = array()</span>) : boolean</pre>
+                <p><em>Delete a resource</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryParams </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\VivialConnect\Common\ResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findThrough" name="method_findThrough" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findThrough()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findThrough(Resource|string  <span class="argument">$resource</span>, integer|string|null  <span class="argument">$id = null</span>, array  <span class="argument">$queryParams = array()</span>, array  <span class="argument">$headers = array()</span>) : Resource|boolean</pre>
+                <p><em>Find a single instance *through* a dependent resource. It prepends the resource URI with the given dependent
+resource URI. For example:
+ API URI: [GET] /posts/1234/comments/5678</em></p>
+                <p>$comment = Comment::findThrough('posts/1234', 5678);</p>
+<p>OR</p>
+<p>$post = Post::find(1234);
+$comment = Comment::findThrough($post, 5678);</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>Resource|string</td>
+                                <td>$resource </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|string|null</td>
+                                <td>$id </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryParams </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\VivialConnect\Common\ResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    Resource|boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_allThrough" name="method_allThrough" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">allThrough()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">allThrough(Resource|string  <span class="argument">$resource</span>, array  <span class="argument">$queryParams = array()</span>, array  <span class="argument">$headers = array()</span>) : \VivialConnect\Resources\Collection|boolean</pre>
+                <p><em>Find all instances *through* a dependent resource. It prepends the resource URI with the given dependent
+resource URI. For example:</em></p>
+                <p>API URI: [GET] /posts/1234/comments</p>
+<p>$comments = Comment::allThrough('posts/1234');</p>
+<p>OR</p>
+<p>$post = Post::find(1234);
+$comments = Comment::allThrough($post);</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>Resource|string</td>
+                                <td>$resource </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryParams </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\VivialConnect\Common\ResponseException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/VivialConnect.Resources.Collection.html">\VivialConnect\Resources\Collection</a>|boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_connection" name="method_connection" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">connection()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">connection() : \VivialConnect\Transport\Connection</pre>
+                <p><em>Get the connection</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/VivialConnect.Transport.Connection.html">\VivialConnect\Transport\Connection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCredentialToken" name="method_setCredentialToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCredentialToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCredentialToken(  <span class="argument">$name</span>,   <span class="argument">$value</span>) </pre>
+                <p><em>Set credentials token.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCredentialToken" name="method_getCredentialToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCredentialToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCredentialToken(  <span class="argument">$name</span>) : string</pre>
+                <p><em>Gets credentials token.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_init" name="method_init" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">init()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">init(array  <span class="argument">$options = array()</span>,   <span class="argument">$connectionName = &#039;default&#039;</span>,   <span class="argument">$client = null</span>) </pre>
+                <p><em>Initilize HTTP connection object.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$connectionName </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$client </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConnectionByName" name="method_getConnectionByName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConnectionByName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConnectionByName(  <span class="argument">$connectionName = &#039;default&#039;</span>) </pre>
+                <p><em>Gets a connection by its name.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$connectionName </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isDirty" name="method_isDirty" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">isDirty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isDirty() : integer</pre>
+                <p><em>Is this entity dirty?</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDependencies" name="method_getDependencies" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getDependencies()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDependencies() : string</pre>
+                <p><em>Get any resource dependencies</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseFind" name="method_parseFind" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">parseFind()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseFind(  <span class="argument">$payload</span>) : mixed</pre>
+                <p><em>Where to find the single resource data from the response payload.</em></p>
+                <p>You should overwrite this method in your model class to suite your needs.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$payload </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseAll" name="method_parseAll" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">parseAll()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseAll(  <span class="argument">$payload</span>) : mixed</pre>
+                <p><em>Where to find the array of data from the response payload.</em></p>
+                <p>You should overwrite this method in your model class to suite your needs.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$payload </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_wrapAttributes" name="method_wrapAttributes" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">wrapAttributes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">wrapAttributes(  <span class="argument">$attributes = array()</span>,   <span class="argument">$root = &#039;object&#039;</span>) : array</pre>
+                <p><em>Wraps attributes into VivialConnect compatible payload.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$attributes </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$root </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hydrate" name="method_hydrate" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">hydrate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hydrate(  <span class="argument">$data</span>) : boolean</pre>
+                <p><em>Hydrate</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\VivialConnect\Resources\ResourceException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/VivialConnect.Resources.Resource.html"><div class="path-wrapper">\VivialConnect\Resources\Resource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Configuration.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Resources/Configuration.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/VivialConnect.html">\VivialConnect</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on June 8th, 2017 at 13:43.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
