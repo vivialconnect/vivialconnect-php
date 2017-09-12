@@ -230,6 +230,49 @@ abstract class Resource
         return false;
     }
 
+    public function update(array $queryParams = [], array $headers = [])
+    {
+        if ($this->_singular != "connectornumber" && $this->_singular != "connectorcallback") {
+            $message = "Update is not implemented for this class.";
+            trigger_error($message, E_USER_ERROR);
+        }
+
+        $connection = $this->getConnection();
+        $data = array_merge($this->attributes, $this->dirty);
+        $data = $this->wrapAttributes($data, $this->_singular);
+
+        // Can we just send the dirty fields?
+        if ($this->getConnection()->getOption(Connection::OPTION_UPDATE_DIFF)) {
+            $data = $this->dirty;
+            $data = $this->wrapAttributes($data, $this->_singular);
+        }
+
+        // Get the update method (usually either PUT or PATCH)
+        $method = $connection->getUpdateMethod();
+
+        // Do the update
+        $this->response = $connection->{$method}($this->getResourceUri(), $queryParams, $data, $headers);
+
+        // Looks like a good response, re-hydrate object, and reset the dirty fields
+        if ($this->response->isSuccessful()) {
+            $data = $this->parseFind($this->response->getPayload());
+            $this->error = null;
+            $this->hydrate($data);
+            $this->dirty = [];
+            return true;
+        }
+
+        // Set the error
+        $errorClass = $connection->getErrorClass();
+        $this->error = new $errorClass($this->response);
+
+        if ($this->response->isThrowable()) {
+            throw new ResponseException($this->error);
+        }
+
+        return false;
+    }
+
     /**
      * Destroy (delete) the resource
      *
@@ -238,10 +281,14 @@ abstract class Resource
      *
      * @return bool
      */
-    public function destroy(array $queryParams = [], array $headers = [])
+    public function destroy(array $queryParams = [], array $headers = [], $body = null)
     {
         $connection = $this->getConnection();
-        $this->response = $connection->delete($this->getResourceUri(), $queryParams, $headers);
+        if ($this->_singular == 'connectornumber' or $this->_singular == connectorcallback) {
+            $body = array_merge($this->attributes, $this->dirty);
+            $body = $this->wrapAttributes($body, $this->_singular);
+        }
+        $this->response = $connection->delete($this->getResourceUri(), $queryParams, $body, $headers);
         if ($this->response->isSuccessful()) {
             $this->error = null;
             return true;
@@ -487,7 +534,7 @@ abstract class Resource
     /**
      * Where to find the array of data from the response payload.
      *
-     * You should overwrite this method in your model class to suite your needs.
+     * You should overwrite this method in your model class to suit your needs.
      *
      * @param $payload
      * @return mixed
@@ -495,6 +542,20 @@ abstract class Resource
     protected function parseAll($payload)
     {
         return Utility::removeRoot($payload);
+    }
+
+    protected function processConnectorNumber(array $attributes = [])
+    {
+        /* pop the connector id */
+        array_pop($attributes);
+        return ["connector" => ["phone_numbers" => [$attributes]]];
+    }
+
+    protected function processConnectorCallback(array $attributes = [])
+    {
+        /* pop the connector id */
+        array_pop($attributes);
+        return ["connector" => ["callbacks" => [$attributes]]];
     }
 
     /**
@@ -506,7 +567,13 @@ abstract class Resource
      */
     protected function wrapAttributes(array $attributes = [], $root = 'object')
     {
-        return [$root => $attributes];
+        if ($root == "connectornumber") {
+            return $this->processConnectorNumber($attributes);
+        }elseif ($root == "connectorcallback"){
+            return $this->processConnectorCallback($attributes);
+        }else{
+            return [$root => $attributes];
+        }
     }
 
     /**
@@ -529,7 +596,6 @@ abstract class Resource
         if (is_array($data)) {
             $data = (object)$data;
         }
-
         // Process the data payload object
         if (is_object($data)) {
             foreach (get_object_vars($data) as $key => $value) {
