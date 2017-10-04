@@ -21,7 +21,7 @@ class Connector extends Resource
         $connector_number->connector_id = $this->id;
 
         if (count($this->phone_numbers) > 0) {
-            $connector_number->update();
+            $connector_number->save([], [], True);
             $updated_array = Connector::find($this->id)->phone_numbers;
             $this->phone_numbers = $updated_array;
         } else {
@@ -69,7 +69,7 @@ class Connector extends Resource
         $connnector_callback->connector_id = $this->id;
 
         if (count($this->callbacks) > 0) {
-            $connnector_callback->update();
+            $connnector_callback->save([], [], True);
             $updated_array = Connector::find($this->id)->callbacks;
             $this->callbacks = $updated_array;
         } else {
@@ -101,6 +101,7 @@ class Connector extends Resource
             $this->deleteCallback($callback[0], $callback[1]);
         }
     }
+
 }
 
 class ConnectorNumber extends Resource
@@ -119,6 +120,13 @@ class ConnectorNumber extends Resource
         $connector_id = $this->connector_id;
         $uri .= "{$connector_id}/phone_numbers.json";
         return $uri;
+    }
+
+    protected function processConnectorNumber(array $attributes = [])
+    {
+        /* pop the connector id */
+        array_pop($attributes);
+        return ["connector" => ["phone_numbers" => [$attributes]]];
     }
 
 }
@@ -140,5 +148,12 @@ class ConnectorCallback extends Resource
         $uri .= "{$connector_id}/callbacks.json";
         return $uri;
     }
+
+    protected function processConnectorCallback(array $attributes = [])
+    {
+        /* pop the connector id */
+        array_pop($attributes);
+        return ["connector" => ["callbacks" => [$attributes]]];
+   }
 
 }

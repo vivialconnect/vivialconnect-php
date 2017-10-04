@@ -185,14 +185,14 @@ abstract class Resource
      *
      * @return bool
      */
-    public function save(array $queryParams = [], array $headers = [])
+    public function save(array $queryParams = [], array $headers = [], $subresource_put = False)
     {
         $connection = $this->getConnection();
         $data = array_merge($this->attributes, $this->dirty);
         $data = $this->wrapAttributes($data, $this->_singular);
 
         // No id, new (POST) resource instance
-        if (empty($this->resourceIdentifier)) {
+        if (empty($this->resourceIdentifier) && $subresource_put == False){
             $this->response = $connection->post($this->getResourceUri(), $queryParams, $data, $headers);
         }
         // Existing resource, update (PUT/PATCH) resource instance
@@ -230,48 +230,6 @@ abstract class Resource
         return false;
     }
 
-    public function update(array $queryParams = [], array $headers = [])
-    {
-        if ($this->_singular != "connectornumber" && $this->_singular != "connectorcallback") {
-            $message = "Update is not implemented for this class.";
-            trigger_error($message, E_USER_ERROR);
-        }
-
-        $connection = $this->getConnection();
-        $data = array_merge($this->attributes, $this->dirty);
-        $data = $this->wrapAttributes($data, $this->_singular);
-
-        // Can we just send the dirty fields?
-        if ($this->getConnection()->getOption(Connection::OPTION_UPDATE_DIFF)) {
-            $data = $this->dirty;
-            $data = $this->wrapAttributes($data, $this->_singular);
-        }
-
-        // Get the update method (usually either PUT or PATCH)
-        $method = $connection->getUpdateMethod();
-
-        // Do the update
-        $this->response = $connection->{$method}($this->getResourceUri(), $queryParams, $data, $headers);
-
-        // Looks like a good response, re-hydrate object, and reset the dirty fields
-        if ($this->response->isSuccessful()) {
-            $data = $this->parseFind($this->response->getPayload());
-            $this->error = null;
-            $this->hydrate($data);
-            $this->dirty = [];
-            return true;
-        }
-
-        // Set the error
-        $errorClass = $connection->getErrorClass();
-        $this->error = new $errorClass($this->response);
-
-        if ($this->response->isThrowable()) {
-            throw new ResponseException($this->error);
-        }
-
-        return false;
-    }
 
     /**
      * Destroy (delete) the resource
@@ -544,20 +502,6 @@ abstract class Resource
         return Utility::removeRoot($payload);
     }
 
-    protected function processConnectorNumber(array $attributes = [])
-    {
-        /* pop the connector id */
-        array_pop($attributes);
-        return ["connector" => ["phone_numbers" => [$attributes]]];
-    }
-
-    protected function processConnectorCallback(array $attributes = [])
-    {
-        /* pop the connector id */
-        array_pop($attributes);
-        return ["connector" => ["callbacks" => [$attributes]]];
-    }
-
     /**
      * Wraps attributes into VivialConnect compatible payload.
      *
@@ -569,9 +513,13 @@ abstract class Resource
     {
         if ($root == "connectornumber") {
             return $this->processConnectorNumber($attributes);
-        }elseif ($root == "connectorcallback"){
+        }
+
+        elseif ($root == "connectorcallback"){
             return $this->processConnectorCallback($attributes);
-        }else{
+        }
+
+        else{
             return [$root => $attributes];
         }
     }

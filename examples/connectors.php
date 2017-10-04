@@ -70,7 +70,7 @@ $connector->deleteCallback("status", "voice");
    - subarray's fourth argument is method i.e. "GET", "POST")
 */
 
-$connector->addCallbacks(["status", "voice", "http://www.mydomain.com/callback2", "POST"], ["incoming", "text", "http://www.mydomain.com/callback", "POST"]]);
+$connector->addCallbacks([["status", "voice", "http://www.mydomain.com/callback2", "POST"], ["incoming", "text", "http://www.mydomain.com/callback", "POST"]]);
 
 /* Delete multiple callbacks from a connector
    - takes an array of arrays i.e ["status", "voice", "http://www.mydomain.com/callback2", "POST"], ["incoming", "text", "http://www.mydomain.com/callback", "POST"]]
@@ -78,7 +78,7 @@ $connector->addCallbacks(["status", "voice", "http://www.mydomain.com/callback2"
    - subarray's second argument is the message type ('text' or 'voice')
 */
 
-$connector->deleteCallbacks(["status", "voice", "http://www.mydomain.com/callback2", "POST"], ["incoming", "text", "http://www.mydomain.com/callback", "POST"]]);
+$connector->deleteCallbacks([["status", "voice", "http://www.mydomain.com/callback2", "POST"], ["incoming", "text", "http://www.mydomain.com/callback", "POST"]]);
 
 
 /*
