@@ -185,14 +185,14 @@ abstract class Resource
      *
      * @return bool
      */
-    public function save(array $queryParams = [], array $headers = [], $subresource_put = False)
+    public function save(array $queryParams = [], array $headers = [], $is_subresource = False)
     {
         $connection = $this->getConnection();
         $data = array_merge($this->attributes, $this->dirty);
         $data = $this->wrapAttributes($data, $this->_singular);
 
         // No id, new (POST) resource instance
-        if (empty($this->resourceIdentifier) && $subresource_put == False){
+        if ($is_subresource == False && empty($this->resourceIdentifier)){
             $this->response = $connection->post($this->getResourceUri(), $queryParams, $data, $headers);
         }
         // Existing resource, update (PUT/PATCH) resource instance
@@ -239,10 +239,10 @@ abstract class Resource
      *
      * @return bool
      */
-    public function destroy(array $queryParams = [], array $headers = [], $body = null)
+    public function destroy(array $queryParams = [], array $headers = [], $is_subresrouce = False)
     {
         $connection = $this->getConnection();
-        if ($this->_singular == 'connectornumber' or $this->_singular == connectorcallback) {
+        if ($is_subresrouce == True) {
             $body = array_merge($this->attributes, $this->dirty);
             $body = $this->wrapAttributes($body, $this->_singular);
         }
@@ -511,17 +511,7 @@ abstract class Resource
      */
     protected function wrapAttributes(array $attributes = [], $root = 'object')
     {
-        if ($root == "connectornumber") {
-            return $this->processConnectorNumber($attributes);
-        }
-
-        elseif ($root == "connectorcallback"){
-            return $this->processConnectorCallback($attributes);
-        }
-
-        else{
-            return [$root => $attributes];
-        }
+        return [$root => $attributes];
     }
 
     /**

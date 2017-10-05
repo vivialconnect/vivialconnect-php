@@ -44,7 +44,7 @@ class Connector extends Resource
         $connector_number->phone_number = $phone_number;
         $connector_number->phone_number_id = $phone_number_id;
         $connector_number->connector_id = $this->id;
-        $connector_number->destroy();
+        $connector_number->destroy([], [], True);
     }
 
     public function deleteNumbers(array $numbers = [])
@@ -92,7 +92,7 @@ class Connector extends Resource
         $connnector_callback->event_type = $event_type;
         $connnector_callback->message_type = $message_type;
         $connnector_callback->connector_id = $this->id;
-        $connnector_callback->destroy();
+        $connnector_callback->destroy([], [], True);
     }
 
     public function deleteCallbacks(array $callbacks = [])
@@ -104,56 +104,6 @@ class Connector extends Resource
 
 }
 
-class ConnectorNumber extends Resource
-{
+class ConnectorNumber extends SubResource {}
 
-    /**
-     * Get the full resource URI
-     *
-     * @return string
-     */
-    public function getResourceUri()
-    {
-        $uri = sprintf(self::API_ACCOUNT_PREFIX,
-            self::getCredentialToken(self::API_ACCOUNT_ID));
-        $uri .= "connectors/";
-        $connector_id = $this->connector_id;
-        $uri .= "{$connector_id}/phone_numbers.json";
-        return $uri;
-    }
-
-    protected function processConnectorNumber(array $attributes = [])
-    {
-        /* pop the connector id */
-        array_pop($attributes);
-        return ["connector" => ["phone_numbers" => [$attributes]]];
-    }
-
-}
-
-class ConnectorCallback extends Resource
-{
-
-    /**
-     * Get the full resource URI
-     *
-     * @return string
-     */
-    public function getResourceUri()
-    {
-        $uri = sprintf(self::API_ACCOUNT_PREFIX,
-            self::getCredentialToken(self::API_ACCOUNT_ID));
-        $uri .= "connectors/";
-        $connector_id = $this->connector_id;
-        $uri .= "{$connector_id}/callbacks.json";
-        return $uri;
-    }
-
-    protected function processConnectorCallback(array $attributes = [])
-    {
-        /* pop the connector id */
-        array_pop($attributes);
-        return ["connector" => ["callbacks" => [$attributes]]];
-   }
-
-}
+class ConnectorCallback extends SubResource {}
