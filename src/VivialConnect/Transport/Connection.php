@@ -358,6 +358,7 @@ class Connection
     public function put($url, array $queryParams = [], $body = null, array $headers = [])
     {
         $this->request = $this->buildRequest('PUT', $url, $queryParams, $body, $headers);
+
         return $this->call($this->request);
     }
 
@@ -374,6 +375,7 @@ class Connection
     public function patch($url, array $queryParams = [], $body = null, array $headers = [])
     {
         $this->request = $this->buildRequest('PATCH', $url, $queryParams, $body, $headers);
+
         return $this->call($this->request);
     }
 
@@ -386,9 +388,11 @@ class Connection
      *
      * @return Response
      */
-    public function delete($url, array $queryParams = [], array $headers = [])
+
+    public function delete($url, array $queryParams = [], $body = null, array $headers = [])
     {
-        $this->request = $this->buildRequest('DELETE', $url, $queryParams, null, $headers);
+        $this->request = $this->buildRequest('DELETE', $url, $queryParams, $body, $headers);
+
         return $this->call($this->request);
     }
 

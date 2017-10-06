@@ -1,7 +1,7 @@
 <?php
 
-$destroy_json = '{}';
-$find_json =
+$destroyJson = '{}';
+$findJson =
 '
 {
   "message": {
@@ -28,7 +28,7 @@ $find_json =
 }
 ';
 
-$send_json = 
+$sendJson = 
 '
 {
   "message": {
@@ -55,7 +55,7 @@ $send_json =
 }
 ';
 
-$all_json=
+$allJson=
 '
 {
   "messages": [
@@ -189,7 +189,7 @@ $all_json=
 }
 ';
 
-$attachment_json = 
+$attachmentJson = 
 '
 {
   "attachment": {
@@ -206,7 +206,7 @@ $attachment_json =
 }
 ';
 
-$attachments_json = 
+$attachmentsJson = 
 '
 {
   "attachments": [
@@ -244,5 +244,145 @@ $attachments_json =
       "size": 45146
     }
   ]
+}
+';
+
+$connectorCreate =
+'
+{
+  "connector": {
+    "account_id": 10144,
+    "active": true,
+    "callbacks": [],
+    "date_created": "2017-09-12T19:39:24+00:00",
+    "date_modified": "2017-09-12T19:39:24+00:00",
+    "id": 230,
+    "more_numbers": false,
+    "name": "My First Connector",
+    "phone_numbers": []
+  }
+}
+';
+
+$connectorAddNumber =
+'
+{
+    "connector": {
+        "date_modified": "2016-08-16T09:46:24",
+        "phone_numbers": [
+            {
+                "phone_number": "+15555555550",
+                "phone_number_id": 1
+            }
+        ]
+    }
+}
+';
+
+$connectorDeleteNumber =
+'
+{
+    "connector": {
+        "date_modified": "2016-08-16T09:46:24",
+        "phone_numbers": []
+    }
+}
+';
+
+
+$connectorAddNumbers =
+'
+{
+    "connector": {
+        "date_modified": "2016-08-16T09:46:24",
+        "phone_numbers": [
+            {
+                "phone_number": "+15555555550",
+                "phone_number_id": 1
+            },
+            {
+                "phone_number": "+15555555551",
+                "phone_number_id": 2
+            }
+        ]
+    }
+}
+';
+
+
+$connectorAddCallback =
+'
+{
+  "connector": {
+    "account_id": 10144,
+    "active": true,
+    "callbacks": [
+      {
+          "date_created": "2016-08-16T09:46:24",
+          "date_modified": "2016-08-16T09:46:24",
+          "event_type": "incoming",
+          "message_type": "text",
+          "url": "path/to/sms/callback1",
+          "method": "POST"
+      }
+    ],
+    "date_created": "2017-09-12T19:39:24+00:00",
+    "date_modified": "2017-09-12T19:39:24+00:00",
+    "id": 230,
+    "more_numbers": false,
+    "name": "My First Connector",
+    "phone_numbers": []
+  }
+}
+';
+
+$connectorDeleteCallback =
+'
+{
+  "connector": {
+    "account_id": 10144,
+    "active": true,
+    "callbacks": [],
+    "date_created": "2017-09-12T19:39:24+00:00",
+    "date_modified": "2017-09-12T19:39:24+00:00",
+    "id": 230,
+    "more_numbers": false,
+    "name": "My First Connector",
+    "phone_numbers": []
+  }
+}
+';
+
+$connectorAddCallbacks =
+'
+{
+  "connector": {
+    "account_id": 10144,
+    "active": true,
+    "callbacks": [
+      {
+          "date_created": "2016-08-16T09:46:24",
+          "date_modified": "2016-08-16T09:46:24",
+          "event_type": "incoming",
+          "message_type": "text",
+          "url": "path/to/sms/callback1",
+          "method": "POST"
+      },
+      {
+          "date_created": "2016-08-16T09:46:24",
+          "date_modified": "2016-08-16T09:46:24",
+          "event_type": "status",
+          "message_type": "text",
+          "url": "path/to/sms/status1",
+          "method": "GET"
+      }
+    ],
+    "date_created": "2017-09-12T19:39:24+00:00",
+    "date_modified": "2017-09-12T19:39:24+00:00",
+    "id": 230,
+    "more_numbers": false,
+    "name": "My First Connector",
+    "phone_numbers": []
+  }
 }
 ';

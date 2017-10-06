@@ -24,29 +24,29 @@ final class ResourceTest extends PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
-      global $find_json;
-      global $send_json;
-      global $destroy_json;
-      global $all_json;
-      global $attachment_json;
-      global $attachments_json;
+      global $findJson;
+      global $sendJson;
+      global $destroyJson;
+      global $allJson;
+      global $attachmentJson;
+      global $attachmentsJson;
 
       $mock = new MockHandler([
-          new Response(200, ['X-Foo' => 'Bar'], $find_json),
+          new Response(200, ['X-Foo' => 'Bar'], $findJson),
           new Response(400, ['X-Foo' => 'Bar'], "error message"),
-          new Response(200, ['X-Foo' => 'Bar'], $send_json),
+          new Response(200, ['X-Foo' => 'Bar'], $sendJson),
           new Response(400, ['X-Foo' => 'Bar'], "error message"),
-          new Response(200, ['X-Foo' => 'Bar'], $find_json),
-          new Response(200, ['X-Foo' => 'Bar'], $destroy_json),
-          new Response(200, ['X-Foo' => 'Bar'], $all_json),
+          new Response(200, ['X-Foo' => 'Bar'], $findJson),
+          new Response(200, ['X-Foo' => 'Bar'], $destroyJson),
+          new Response(200, ['X-Foo' => 'Bar'], $allJson),
           new Response(400, ['X-Foo' => 'Bar'], "error message"),
-          new Response(200, ['X-Foo' => 'Bar'], $find_json),
-          new Response(200, ['X-Foo' => 'Bar'], $attachment_json),
-          new Response(200, ['X-Foo' => 'Bar'], $find_json),
+          new Response(200, ['X-Foo' => 'Bar'], $findJson),
+          new Response(200, ['X-Foo' => 'Bar'], $attachmentJson),
+          new Response(200, ['X-Foo' => 'Bar'], $findJson),
           new Response(400, ['X-Foo' => 'Bar'], "error message"),
-          new Response(200, ['X-Foo' => 'Bar'], $find_json),
-          new Response(200, ['X-Foo' => 'Bar'], $attachments_json),
-          new Response(200, ['X-Foo' => 'Bar'], $find_json),
+          new Response(200, ['X-Foo' => 'Bar'], $findJson),
+          new Response(200, ['X-Foo' => 'Bar'], $attachmentsJson),
+          new Response(200, ['X-Foo' => 'Bar'], $findJson),
           new Response(400, ['X-Foo' => 'Bar'], "error message"),
           new RequestException("Error Communicating with Server", new Request('GET', 'test'))
       ]);
