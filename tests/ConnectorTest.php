@@ -23,50 +23,50 @@ final class ConnectorTest extends PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
-      global $find_json;
-      global $send_json;
-      global $destroy_json;
-      global $all_json;
-      global $attachment_json;
-      global $attachments_json;
-      global $connector_create;
-      global $connector_add_number;
-      global $connector_delete_number;
-      global $connector_add_numbers;
-      global $connector_add_callback;
-      global $connector_delete_callback;
-      global $connector_add_callbacks;
+      global $findJson;
+      global $sendJson;
+      global $destroyJson;
+      global $allJson;
+      global $attachmentJson;
+      global $attachmentsJson;
+      global $connectorCreate;
+      global $connectorAddNumber;
+      global $connectorDeleteNumber;
+      global $connectorAddNumbers;
+      global $connectorAddCallback;
+      global $connectorDeleteCallback;
+      global $connectorAddCallbacks;
 
       $mock = new MockHandler([
-          new Response(200, ['X-Foo' => 'Bar'], $connector_create),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorCreate),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_add_number),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorAddNumber),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_delete_number),
-          new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_add_numbers),
-          new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_delete_number),
-          new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_add_callback),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_delete_callback),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorDeleteNumber),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorAddNumbers),
+          new Response(200, ['X-Foo' => 'Bar'], ""),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorDeleteNumber),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_add_callbacks),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorAddCallback),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorDeleteCallback),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
           new Response(200, ['X-Foo' => 'Bar'], ""),
-          new Response(200, ['X-Foo' => 'Bar'], $connector_delete_callback),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorAddCallbacks),
+          new Response(200, ['X-Foo' => 'Bar'], ""),
+          new Response(200, ['X-Foo' => 'Bar'], ""),
+          new Response(200, ['X-Foo' => 'Bar'], ""),
+          new Response(200, ['X-Foo' => 'Bar'], ""),
+          new Response(200, ['X-Foo' => 'Bar'], ""),
+          new Response(200, ['X-Foo' => 'Bar'], $connectorDeleteCallback),
       ]);
 
       $handler = HandlerStack::create($mock);

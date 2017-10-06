@@ -8,26 +8,26 @@ use VivialConnect\Common\ResponseException;
 class Connector extends Resource
 {
 
-    public function addNumber($phone_number, $phone_number_id)
+    public function addNumber($phoneNumber, $phoneNumberId)
     {
-        $connector_number = new ConnectorNumber;
-        $connector_number->phone_number = $phone_number;
-        $connector_number->phone_number_id = $phone_number_id;
+        $connectorNumber = new ConnectorNumber;
+        $connectorNumber->phone_number = $phoneNumber;
+        $connectorNumber->phone_number_id = $phoneNumberId;
 
         if ($this->id == null){
             $this->save();
         }
 
-        $connector_number->connector_id = $this->id;
+        $connectorNumber->connector_id = $this->id;
 
         if (count($this->phone_numbers) > 0) {
-            $connector_number->save([], [], True);
-            $updated_array = Connector::find($this->id)->phone_numbers;
-            $this->phone_numbers = $updated_array;
+            $connectorNumber->save([], [], True);
+            $updatedArray = Connector::find($this->id)->phone_numbers;
+            $this->phone_numbers = $updatedArray;
         } else {
-            $connector_number->save();
-            $updated_array = Connector::find($this->id)->phone_numbers;
-            $this->phone_numbers = $updated_array;
+            $connectorNumber->save();
+            $updatedArray = Connector::find($this->id)->phone_numbers;
+            $this->phone_numbers = $updatedArray;
         }
     }
 
@@ -38,13 +38,13 @@ class Connector extends Resource
         }
     }
 
-    public function deleteNumber($phone_number, $phone_number_id)
+    public function deleteNumber($phoneNumber, $phoneNumberId)
     {
-        $connector_number = new ConnectorNumber;
-        $connector_number->phone_number = $phone_number;
-        $connector_number->phone_number_id = $phone_number_id;
-        $connector_number->connector_id = $this->id;
-        $connector_number->destroy([], [], True);
+        $connectorNumber = new ConnectorNumber;
+        $connectorNumber->phone_number = $phoneNumber;
+        $connectorNumber->phone_number_id = $phoneNumberId;
+        $connectorNumber->connector_id = $this->id;
+        $connectorNumber->destroy([], [], True);
     }
 
     public function deleteNumbers(array $numbers = [])
@@ -54,28 +54,28 @@ class Connector extends Resource
         }
     }
 
-    public function addCallback($event_type, $message_type, $url, $method)
+    public function addCallback($eventType, $messageType, $url, $method)
     {
-        $connnector_callback = new ConnectorCallback;
-        $connnector_callback->event_type = $event_type;
-        $connnector_callback->message_type = $message_type;
-        $connnector_callback->url = $url;
-        $connnector_callback->method = $method;
+        $connectorCallback = new ConnectorCallback;
+        $connectorCallback->event_type = $eventType;
+        $connectorCallback->message_type = $messageType;
+        $connectorCallback->url = $url;
+        $connectorCallback->method = $method;
 
         if ($this->id == null){
             $this->save();
         }
 
-        $connnector_callback->connector_id = $this->id;
+        $connectorCallback->connector_id = $this->id;
 
         if (count($this->callbacks) > 0) {
-            $connnector_callback->save([], [], True);
-            $updated_array = Connector::find($this->id)->callbacks;
-            $this->callbacks = $updated_array;
+            $connectorCallback->save([], [], True);
+            $updatedArray = Connector::find($this->id)->callbacks;
+            $this->callbacks = $updatedArray;
         } else {
-            $connnector_callback->save();
-            $updated_array = Connector::find($this->id)->callbacks;
-            $this->callbacks = $updated_array;
+            $connectorCallback->save();
+            $updatedArray = Connector::find($this->id)->callbacks;
+            $this->callbacks = $updatedArray;
         }
     }
 
@@ -86,13 +86,13 @@ class Connector extends Resource
         }
     }
 
-    public function deleteCallback($event_type, $message_type)
+    public function deleteCallback($eventType, $messageType)
     {
-        $connnector_callback = new ConnectorCallback;
-        $connnector_callback->event_type = $event_type;
-        $connnector_callback->message_type = $message_type;
-        $connnector_callback->connector_id = $this->id;
-        $connnector_callback->destroy([], [], True);
+        $connectorCallback = new ConnectorCallback;
+        $connectorCallback->event_type = $eventType;
+        $connectorCallback->message_type = $messageType;
+        $connectorCallback->connector_id = $this->id;
+        $connectorCallback->destroy([], [], True);
     }
 
     public function deleteCallbacks(array $callbacks = [])

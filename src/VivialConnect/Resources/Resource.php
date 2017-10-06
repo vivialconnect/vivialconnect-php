@@ -185,14 +185,14 @@ abstract class Resource
      *
      * @return bool
      */
-    public function save(array $queryParams = [], array $headers = [], $is_subresource = False)
+    public function save(array $queryParams = [], array $headers = [], $isSubresource = False)
     {
         $connection = $this->getConnection();
         $data = array_merge($this->attributes, $this->dirty);
         $data = $this->wrapAttributes($data, $this->_singular);
 
         // No id, new (POST) resource instance
-        if ($is_subresource == False && empty($this->resourceIdentifier)){
+        if ($isSubresource == False && empty($this->resourceIdentifier)){
             $this->response = $connection->post($this->getResourceUri(), $queryParams, $data, $headers);
         }
         // Existing resource, update (PUT/PATCH) resource instance
@@ -239,10 +239,10 @@ abstract class Resource
      *
      * @return bool
      */
-    public function destroy(array $queryParams = [], array $headers = [], $is_subresrouce = False)
+    public function destroy(array $queryParams = [], array $headers = [], $isSubresrouce = False)
     {
         $connection = $this->getConnection();
-        if ($is_subresrouce == True) {
+        if ($isSubresrouce == True) {
             $body = array_merge($this->attributes, $this->dirty);
             $body = $this->wrapAttributes($body, $this->_singular);
         }

@@ -1,7 +1,7 @@
 <?php
 
-$destroy_json = '{}';
-$find_json =
+$destroyJson = '{}';
+$findJson =
 '
 {
   "message": {
@@ -28,7 +28,7 @@ $find_json =
 }
 ';
 
-$send_json = 
+$sendJson = 
 '
 {
   "message": {
@@ -55,7 +55,7 @@ $send_json =
 }
 ';
 
-$all_json=
+$allJson=
 '
 {
   "messages": [
@@ -189,7 +189,7 @@ $all_json=
 }
 ';
 
-$attachment_json = 
+$attachmentJson = 
 '
 {
   "attachment": {
@@ -206,7 +206,7 @@ $attachment_json =
 }
 ';
 
-$attachments_json = 
+$attachmentsJson = 
 '
 {
   "attachments": [
@@ -247,7 +247,7 @@ $attachments_json =
 }
 ';
 
-$connector_create =
+$connectorCreate =
 '
 {
   "connector": {
@@ -264,7 +264,7 @@ $connector_create =
 }
 ';
 
-$connector_add_number =
+$connectorAddNumber =
 '
 {
     "connector": {
@@ -279,7 +279,7 @@ $connector_add_number =
 }
 ';
 
-$connector_delete_number =
+$connectorDeleteNumber =
 '
 {
     "connector": {
@@ -290,7 +290,7 @@ $connector_delete_number =
 ';
 
 
-$connector_add_numbers =
+$connectorAddNumbers =
 '
 {
     "connector": {
@@ -310,7 +310,7 @@ $connector_add_numbers =
 ';
 
 
-$connector_add_callback =
+$connectorAddCallback =
 '
 {
   "connector": {
@@ -336,7 +336,7 @@ $connector_add_callback =
 }
 ';
 
-$connector_delete_callback =
+$connectorDeleteCallback =
 '
 {
   "connector": {
@@ -353,7 +353,7 @@ $connector_delete_callback =
 }
 ';
 
-$connector_add_callbacks =
+$connectorAddCallbacks =
 '
 {
   "connector": {
