@@ -43,24 +43,5 @@ class Account extends Resource
         }
         return false;
     }
-
-    public static function subAccounts(array $queryParams = [], array $headers = [])
-    {
-        $className = get_called_class();
-        $instance = new $className;
-        $accountId = Resource::getCredentialToken(Resource::API_ACCOUNT_ID);
-        $response = $instance->getConnection()->get("/accounts/{$accountId}/subaccounts.json", $queryParams, $headers);
-        if ($response->isSuccessful()) {
-            $data = $instance->parseAll($response->getPayload());
-            if (property_exists($data, 'accounts') && is_array($data->accounts))
-                return new Collection($className, $data->accounts, $response);
-            return $data;
-        }
-        if ($response->isThrowable()) {
-            $errorClass = $instance->getConnection()->getErrorClass();
-            throw new ResponseException(new $errorClass($response));
-        }
-        return false;
-    }
 }
 

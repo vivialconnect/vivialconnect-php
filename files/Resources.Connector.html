@@ -21,7 +21,55 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
     <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
@@ -96,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1601553912"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-32590872"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1601553912" class="accordion-body collapse in">
+            <div id="namespace-32590872" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1951510979"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-368206999"></a>
                                 <a href="../namespaces/VivialConnect.html" style="margin-left: 30px; padding-left: 0">VivialConnect</a>
             </div>
-            <div id="namespace-1951510979" class="accordion-body collapse ">
+            <div id="namespace-368206999" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-738289539"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-353403365"></a>
                                 <a href="../namespaces/VivialConnect.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
             </div>
-            <div id="namespace-738289539" class="accordion-body collapse ">
+            <div id="namespace-353403365" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -137,10 +185,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2111094951"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1957183986"></a>
                                 <a href="../namespaces/VivialConnect.Filters.html" style="margin-left: 30px; padding-left: 0">Filters</a>
             </div>
-            <div id="namespace-2111094951" class="accordion-body collapse ">
+            <div id="namespace-1957183986" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -155,10 +203,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-795382006"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1347336937"></a>
                                 <a href="../namespaces/VivialConnect.Resources.html" style="margin-left: 30px; padding-left: 0">Resources</a>
             </div>
-            <div id="namespace-795382006" class="accordion-body collapse ">
+            <div id="namespace-1347336937" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -185,10 +233,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1777315969"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1540906060"></a>
                                 <a href="../namespaces/VivialConnect.Transport.html" style="margin-left: 30px; padding-left: 0">Transport</a>
             </div>
-            <div id="namespace-1777315969" class="accordion-body collapse ">
+            <div id="namespace-1540906060" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -222,19 +270,29 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content namespace">
+                <div class="span8 content file">
                     <nav>
-                                                <a href="../namespaces/VivialConnect.html">\VivialConnect</a>
-                                            </nav>
-                    <h1><small>\VivialConnect</small>Filters</h1>
+                                                                    </nav>
 
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>Resources</small>Connector.php</h1>
+                    <p><em></em></p>
                     
+
                     
                     
                                         <h2>Classes</h2>
                     <table class="table table-hover">
                                             <tr>
-                            <td><a href="../classes/VivialConnect.Filters.HmacAuth.html">HmacAuth</a></td>
+                            <td><a href="../classes/VivialConnect.Resources.Connector.html">Connector</a></td>
+                            <td><em></em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/VivialConnect.Resources.ConnectorNumber.html">ConnectorNumber</a></td>
+                            <td><em></em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/VivialConnect.Resources.ConnectorCallback.html">ConnectorCallback</a></td>
                             <td><em></em></td>
                         </tr>
                                         </table>
@@ -242,15 +300,16 @@
 
                 <aside class="span4 detailsbar">
                     <dl>
-                        <dt>Namespace hierarchy</dt>
-                        <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                                                                                                                            
-                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
-                                                            
-                                    <div class="namespace-wrapper"><a href="../namespaces/VivialConnect.html">\VivialConnect</a></div>
-                                                                                        <div class="namespace-wrapper">\VivialConnect\Filters</div>
-                        </dd>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
                     </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
                 </aside>
             </div>
 
@@ -258,6 +317,16 @@
             
         </div>
     </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Resources/Connector.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
 
     <footer class="row-fluid">
         <section class="span10 offset2">
