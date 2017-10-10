@@ -185,14 +185,14 @@ abstract class Resource
      *
      * @return bool
      */
-    public function save(array $queryParams = [], array $headers = [])
+    public function save(array $queryParams = [], array $headers = [], $isSubresource = False)
     {
         $connection = $this->getConnection();
         $data = array_merge($this->attributes, $this->dirty);
         $data = $this->wrapAttributes($data, $this->_singular);
 
         // No id, new (POST) resource instance
-        if (empty($this->resourceIdentifier)) {
+        if ($isSubresource == False && empty($this->resourceIdentifier)){
             $this->response = $connection->post($this->getResourceUri(), $queryParams, $data, $headers);
         }
         // Existing resource, update (PUT/PATCH) resource instance
@@ -230,6 +230,7 @@ abstract class Resource
         return false;
     }
 
+
     /**
      * Destroy (delete) the resource
      *
@@ -238,10 +239,14 @@ abstract class Resource
      *
      * @return bool
      */
-    public function destroy(array $queryParams = [], array $headers = [])
+    public function destroy(array $queryParams = [], array $headers = [], $isSubresrouce = False)
     {
         $connection = $this->getConnection();
-        $this->response = $connection->delete($this->getResourceUri(), $queryParams, $headers);
+        if ($isSubresrouce == True) {
+            $body = array_merge($this->attributes, $this->dirty);
+            $body = $this->wrapAttributes($body, $this->_singular);
+        }
+        $this->response = $connection->delete($this->getResourceUri(), $queryParams, $body, $headers);
         if ($this->response->isSuccessful()) {
             $this->error = null;
             return true;
@@ -487,7 +492,7 @@ abstract class Resource
     /**
      * Where to find the array of data from the response payload.
      *
-     * You should overwrite this method in your model class to suite your needs.
+     * You should overwrite this method in your model class to suit your needs.
      *
      * @param $payload
      * @return mixed
@@ -529,7 +534,6 @@ abstract class Resource
         if (is_array($data)) {
             $data = (object)$data;
         }
-
         // Process the data payload object
         if (is_object($data)) {
             foreach (get_object_vars($data) as $key => $value) {
