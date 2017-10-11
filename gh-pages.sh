@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# author: Boris Musa (https://github.com/bmlvx)
-
 set -o errexit; set -o nounset; set -o pipefail
 
 pushd `dirname $0` > /dev/null
