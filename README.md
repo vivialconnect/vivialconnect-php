@@ -4,7 +4,7 @@ VivialConnect is a simple SMS/MMS API. It's designed specifically for developers
 
 Get your API key here: https://www.vivialconnect.net/register <br>
 Be sure to read the API documentation: https://www.vivialconnect.net/docs <br>
-Library documentation lives here: https://vivialconnect.github.io/vivialconnect-php/
+Library documentation lives here: https://vivialconnect.github.io/vivialconnect-php/namespaces/VivialConnect.html
 
 
 Requirements
