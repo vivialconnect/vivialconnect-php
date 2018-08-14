@@ -1,6 +1,6 @@
 {
     "name": "vivialconnect/sdk",
-    "description": "VivialConnect is a simple SMS/MSS API. It's designed specifically for developers seeking a simple, affordable and scalable messaging solution.",
+    "description": "VivialConnect is a simple SMS/MMS API. It's designed specifically for developers seeking a simple, affordable and scalable messaging solution.",
     "type": "library",
     "homepage": "https://www.vivialconnect.net/",
     "keywords": [
