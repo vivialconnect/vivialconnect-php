@@ -169,6 +169,7 @@ class Connection
         if (array_key_exists($name, $this->options)) {
             $this->options[$name] = $value;
         }
+        return $this;
     }
 
     /**
