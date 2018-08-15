@@ -107,7 +107,7 @@ class Connection
     const OPTION_LOG = 'log';
 
     /** @var array  */
-    static protected $options = [
+    protected $options = [
         self::OPTION_BASE_URI => "https://api.vivialconnect.net/api/v1.0/",
         self::OPTION_DEFAULT_HEADERS => [],
         self::OPTION_DEFAULT_QUERY_PARAMS => [],
@@ -137,7 +137,7 @@ class Connection
     {
         if ($options) {
             foreach ($options as $option => $value) {
-                $this::setOption($option, $value);
+                $this->setOption($option, $value);
             }
         }
 
@@ -164,10 +164,10 @@ class Connection
      *
      * @return Connection
      */
-    public static function setOption($name, $value)
+    public function setOption($name, $value)
     {
-        if (array_key_exists($name, self::$options)) {
-            self::$options[$name] = $value;
+        if (array_key_exists($name, $this->options)) {
+            $this->options[$name] = $value;
         }
     }
 
@@ -177,10 +177,10 @@ class Connection
      * @param $name
      * @return mixed|null
      */
-    public static function getOption($name)
+    public function getOption($name)
     {
-        if (array_key_exists($name, self::$options)) {
-            return self::$options[$name];
+        if (array_key_exists($name, $this->options)) {
+            return $this->options[$name];
         }
         return null;
     }
@@ -190,7 +190,7 @@ class Connection
      */
     public function getResponseClass()
     {
-        return $this::getOption(self::OPTION_RESPONSE_CLASS);
+        return $this->getOption(self::OPTION_RESPONSE_CLASS);
     }
 
     /**
@@ -198,7 +198,7 @@ class Connection
      */
     public function getErrorClass()
     {
-        return $this::getOption(self::OPTION_ERROR_CLASS);
+        return $this->getOption(self::OPTION_ERROR_CLASS);
     }
 
     /**
@@ -206,7 +206,7 @@ class Connection
      */
     public function getUpdateMethod()
     {
-        $method = $this::getOption(self::OPTION_UPDATE_METHOD);
+        $method = $this->getOption(self::OPTION_UPDATE_METHOD);
         if (empty($method)) {
             return 'put';
         }
@@ -231,14 +231,14 @@ class Connection
         $method = strtoupper($method);
 
         // Merge in default headers
-        $headers = array_merge($this::getOption(self::OPTION_DEFAULT_HEADERS), $headers);
+        $headers = array_merge($this->getOption(self::OPTION_DEFAULT_HEADERS), $headers);
 
         // Merge in default query params
-        $queryParams = array_merge($this::getOption(self::OPTION_DEFAULT_QUERY_PARAMS), $queryParams);
+        $queryParams = array_merge($this->getOption(self::OPTION_DEFAULT_QUERY_PARAMS), $queryParams);
 
         // Process the body
         if ($body) {
-            $format = $this::getOption(self::OPTION_REQUEST_BODY_FORMAT);
+            $format = $this->getOption(self::OPTION_REQUEST_BODY_FORMAT);
             if ($format == 'json') {
                 $headers['Content-Type'] = 'application/json';
                 $body = json_encode($body);
@@ -255,7 +255,7 @@ class Connection
         }
 
         // Prepend base URI
-        $url = $this::getOption(self::OPTION_BASE_URI) . $url;
+        $url = $this->getOption(self::OPTION_BASE_URI) . $url;
 
         return new Request($method, $url, $queryParams, $headers, $body);
     }
@@ -306,7 +306,7 @@ class Connection
         $stop = microtime(true);
 
         // Should we log this request?
-        if ($this::getOption(self::OPTION_LOG)) {
+        if ($this->getOption(self::OPTION_LOG)) {
             $this->addLog($request, $response, ($stop-$start));
         }
 
@@ -450,7 +450,7 @@ class Connection
     {
         if (empty($this->middlewareManager)) {
             $layers = [];
-            foreach ($this::getOption(self::OPTION_MIDDLEWARE) as $middleware) {
+            foreach ($this->getOption(self::OPTION_MIDDLEWARE) as $middleware) {
                 $layers[] = new $middleware;
             }
             $this->middlewareManager = new Onion($layers);
