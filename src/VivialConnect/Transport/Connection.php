@@ -109,7 +109,8 @@ class Connection
     /** @var array  */
     protected $options = [
         self::OPTION_BASE_URI => "https://api.vivialconnect.net/api/v1.0/",
-        self::OPTION_DEFAULT_HEADERS => [],
+        self::OPTION_DEFAULT_HEADERS => ["Accept" => "application/json",
+                                         "User-Agent" => "VivialConnect PHPClient"],
         self::OPTION_DEFAULT_QUERY_PARAMS => [],
         self::OPTION_REQUEST_BODY_FORMAT => 'json',
         self::OPTION_ERROR_CLASS => 'VivialConnect\\Common\\Error',
@@ -250,6 +251,19 @@ class Connection
                 $body = http_build_query($body, null, '&');
             }
         }
+        # Parse host from URL
+        $matches = [];
+        $matched = preg_match("/:\/\/([^\/]+)\//i", $this->getOption(self::OPTION_BASE_URI), $matches);
+        $host = $matches[1];
+        $headers['Host'] = $host;
+
+        # Generate X-VivialConnect-User-Agent
+        $xUserAgent = ['lang_version' => phpversion(),
+                       'publisher' => 'vivialconnect',
+                       'platform' => php_uname('s') . ' ' . php_uname('r') . ' ' . php_uname('m') . ' ' . php_uname('v'),
+                       'lang' => 'PHP'];
+        $headers['X-VivialConnect-User-Agent'] = json_encode($xUserAgent);
+
         // If we have a falsey body, set body to null
         if (empty($body)) {
             $body = null;
