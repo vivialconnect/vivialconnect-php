@@ -35,7 +35,7 @@ You can also manually add metadata into your local `composer.json` file, at the 
 ```
 {
     "require": {
-        "vivialconnect/sdk": "0.2.0"
+        "vivialconnect/sdk": "^0.2.0"
     }
 }
 ```
