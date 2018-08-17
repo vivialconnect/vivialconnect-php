@@ -10,6 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 
 use VivialConnect\Common\Request;
 use VivialConnect\Common\Response;
+use VivialConnect\Common\Config;
 use VivialConnect\Filters\HmacAuth;
 
 
@@ -110,7 +111,7 @@ class Connection
     protected $options = [
         self::OPTION_BASE_URI => "https://api.vivialconnect.net/api/v1.0/",
         self::OPTION_DEFAULT_HEADERS => ["Accept" => "application/json",
-                                         "User-Agent" => "VivialConnect PHPClient"],
+                "User-Agent" => "VivialConnect PHPClient/" . Config::CLIENT_VERSION],
         self::OPTION_DEFAULT_QUERY_PARAMS => [],
         self::OPTION_REQUEST_BODY_FORMAT => 'json',
         self::OPTION_ERROR_CLASS => 'VivialConnect\\Common\\Error',
